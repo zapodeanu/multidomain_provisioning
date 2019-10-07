@@ -33,7 +33,7 @@ __license__ = "Cisco Sample Code License, Version 1.1"
 
 # Update this section with the Cisco DNA Center server info and user information
 
-DNAC_URL = 'https://Cisco DNA Center Server IP Address'
+DNAC_URL = 'https://10.1.3.230'
 DNAC_USER = 'username'
 DNAC_PASS = 'password'
 
