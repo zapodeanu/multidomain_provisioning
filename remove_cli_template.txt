@@ -1,0 +1,17 @@
+!
+no vlan 100
+!
+no interface vlan100
+!
+interface GigabitEthernet1/0/10
+ no description connected_to_POS
+ no switchport access vlan 100
+ no switchport mode access
+!
+interface GigabitEthernet1/0/11
+ switchport
+ device-tracking attach-policy IPDT_MAX_10
+ no description connected_to_DCVEDGE-1
+ no ip address 10.2.10.251 255.255.255.0
+
+

@@ -1,0 +1,10 @@
+{
+"location": "NYC",
+"switchName": "NYC-9300",
+"vlan": 100,
+"vrf": "sale",
+"vedge": "vedge-2",
+"macAddress": "AA:BB:CC:DD:EE:FF",
+"endpointGroup": "Retail",
+"switchport": "GigabitEthernet1/0/10"
+}

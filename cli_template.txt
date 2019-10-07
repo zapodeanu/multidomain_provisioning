@@ -1,0 +1,20 @@
+!
+vlan $vlanId
+ name RETAIL
+!
+interface vlan$vlanId
+ description svi_connected_to POS_vlan
+ ip address 10.10.10.1 255.255.255.0
+ ip ospf 10 area 0
+!
+interface $switchport
+ description connected_to_POS
+ switchport access vlan $vlanId
+ switchport mode access
+!
+interface GigabitEthernet1/0/11
+ no switchport
+ description connected_to_DCVEDGE-1
+ ip address 10.2.10.251 255.255.255.0
+ ip ospf 10 area 0
+!
