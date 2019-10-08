@@ -1,6 +1,6 @@
 {
 "location": "Branch",
-"switchName": "BR-SW1",
+"switchName": "BR-SW1.cisco.com",
 "vlan": 100,
 "vrf": "sale",
 "vedge": "vedge-2",
