@@ -292,9 +292,12 @@ def deploy_template(template_name, project_name, device_name, params, dnac_jwt_t
                 }
             ]
         }
+    print(payload)
     url = DNAC_URL + '/dna/intent/api/v1/template-programmer/template/deploy'
     header = {'content-type': 'application/json', 'x-auth-token': dnac_jwt_token}
     response = requests.post(url, headers=header, data=json.dumps(payload), verify=False)
+    print(response.status_code)
+    print(response.text)
     depl_task_id = (response.json())["deploymentId"].split(' ')[-1]
     return depl_task_id
 
