@@ -4,7 +4,7 @@
 "vlan": 100,
 "vrf": "sale",
 "vedge": "vedge-2",
-"macAddress": "AA:BB:CC:DD:EE:FF",
+"macAddress": "00:AA:BB:CC:DD:EE",
 "endpointGroup": "Retail",
 "switchport": "GigabitEthernet1/0/10"
 }
