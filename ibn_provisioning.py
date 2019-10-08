@@ -114,6 +114,7 @@ def main():
     ise_epg = ibn_json['endpointGroup']
     client_mac = ibn_json['macAddress']
 
+    time.sleep(5)  # wait for the commit to complete
     # deploy the cli template to device
     print('\nDeploy the CLI Template to the switch: ', device_name)
     depl_template_id = dnac_apis.deploy_template(DNAC_TEMPLATE, DNAC_PROJECT, device_name, parameters, dnac_token)
