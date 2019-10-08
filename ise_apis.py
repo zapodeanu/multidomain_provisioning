@@ -96,9 +96,5 @@ def add_endpoint_by_mac(mac_address, eg_name, ise_auth):
     pprint(param)
     header = {'content-type': 'application/json', 'accept': 'application/json'}
     response = requests.post(url, auth=ise_auth, data=json.dumps(param), headers=header, verify=False)
-    print(response.status_code, response.text)
+    return response.status_code
 
-
-print(get_endpoint_group_by_name('Retail', ISE_AUTH))
-
-add_endpoint_by_mac('11:22:33:33:22:11', 'Retail', ISE_AUTH)

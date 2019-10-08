@@ -35,6 +35,7 @@ import datetime
 import logging
 import time
 import dnac_apis
+import ise_apis
 
 
 from urllib3.exceptions import InsecureRequestWarning  # for insecure https warnings
@@ -42,11 +43,13 @@ from requests.auth import HTTPBasicAuth  # for Basic Auth
 
 from config import DNAC_URL, DNAC_PASS, DNAC_USER
 from config import DNAC_PROJECT, DNAC_TEMPLATE, CLI_TEMPLATE, IBN_INFO
+from config import ISE_URL, ISE_USER, ISE_PASS
 
 urllib3.disable_warnings(InsecureRequestWarning)  # disable insecure https warnings
 
 
 DNAC_AUTH = HTTPBasicAuth(DNAC_USER, DNAC_PASS)
+ISE_AUTH = HTTPBasicAuth(ISE_USER, ISE_PASS)
 
 
 def pprint(json_data):
@@ -65,9 +68,9 @@ def main():
     :return:
     """
 
-    # logging, debug level, to file {dnac_templates_run.log}
+    # logging, debug level, to file {ibn_provisioning_run.log}
     logging.basicConfig(
-        filename='dnac_templates_run.log',
+        filename='ibn_provisioning_run.log',
         level=logging.DEBUG,
         format='%(asctime)s.%(msecs)03d %(levelname)s %(module)s - %(funcName)s: %(message)s',
         datefmt='%Y-%m-%d %H:%M:%S')
@@ -104,7 +107,12 @@ def main():
     vlan_id = ibn_json['vlan']
     device_name = ibn_json['switchName']
     switchport = ibn_json['switchport']
+
+    # parameters to be sent to Cisco DNA Center template deploy
     parameters = {"vlanId": vlan_id, "switchport": switchport}
+
+    ise_epg = ibn_json['endpointGroup']
+    client_mac = ibn_json['macAddress']
 
     # deploy the cli template to device
     print('\nDeploy the CLI Template to the switch: ', device_name)
@@ -125,6 +133,13 @@ def main():
     time.sleep(120)
     sync_task_status = dnac_apis.check_task_id_status(sync_task_id, dnac_token)
     print('\nSync of device: "', device_name, '" : ', sync_task_status)
+
+    # add POS MAC address to MAB in ISE
+    epg_info = ise_apis.get_endpoint_group_by_name(ise_epg, ISE_AUTH)
+    print('\nThe EPG ISE id is: ', epg_info['EndPointGroup']['id'])
+
+    add_enpoint_status = ise_apis.add_endpoint_by_mac(client_mac, ise_epg, ISE_AUTH)
+    print('\nAdd new mac status code: ', add_enpoint_status)
 
     date_time = str(datetime.datetime.now().replace(microsecond=0))
     print('\nEnd of the application "ibn_provisioning.py" run at this time ' + date_time)
