@@ -1,10 +1,10 @@
 {
-"location": "NYC",
-"switchName": "NYC-9300",
+"location": "Branch",
+"switchName": "BR-SW1",
 "vlan": 100,
 "vrf": "sale",
 "vedge": "vedge-2",
-"macAddress": "AA:00:22:33:34:56",
+"macAddress": "AA:BB:CC:DD:EE:FF",
 "endpointGroup": "Retail",
 "switchport": "GigabitEthernet1/0/10"
 }
