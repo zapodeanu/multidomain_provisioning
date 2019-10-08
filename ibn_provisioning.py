@@ -117,9 +117,10 @@ def main():
     # deploy the cli template to device
     print('\nDeploy the CLI Template to the switch: ', device_name)
     depl_template_id = dnac_apis.deploy_template(DNAC_TEMPLATE, DNAC_PROJECT, device_name, parameters, dnac_token)
+    print('\nDeployment Task id: ', depl_template_id)
 
     # check for the deployment status
-    time.sleep(30)  # wait 10 seconds for deployment to complete
+    time.sleep(30)  # wait 30 seconds for deployment to complete
     deployment_status = dnac_apis.check_template_deployment_status(depl_template_id, dnac_token)
     print('\nTemplate deployment status: ' + deployment_status)
 
