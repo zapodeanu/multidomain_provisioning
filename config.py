@@ -2,8 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 
-Cisco DNA Center Client Information using the MAC Address
-
 Copyright (c) 2019 Cisco and/or its affiliates.
 
 This software is licensed to you under the terms of the Cisco Sample
