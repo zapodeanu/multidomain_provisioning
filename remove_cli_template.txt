@@ -13,5 +13,12 @@ interface GigabitEthernet1/0/11
  device-tracking attach-policy IPDT_MAX_10
  no description connected_to_DCVEDGE-1
  no ip address 10.2.10.251 255.255.255.0
-
-
+!
+no router ospf 10
+!
+hostname BR-SW1
+!
+end
+!
+wr mem
+!
